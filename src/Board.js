@@ -4,6 +4,9 @@ import "./Board.css";
 
 /** Game board of Lights out.
  *
+ * Board:
+ * - Holds the state that represents the in-memory grid of true/false for lights-on/off
+ *
  * Properties:
  *
  * - nrows: number of rows of board
@@ -14,16 +17,8 @@ import "./Board.css";
  *
  * - board: array-of-arrays of true/false
  *
- *    For this board:
- *       .  .  .
- *       O  O  .     (where . is off, and O is on)
- *       .  .  .
- *
- *    This would be: [[f, f, f], [t, t, f], [f, f, f]]
- *
- *  This should render an HTML table of individual <Cell /> components.
- *
- *  This doesn't handle any clicks --- clicks are on individual cells
+ *  Renders an HTML table of individual <Cell /> components.
+ *  Doesn't handle any clicks --- clicks are on individual cells
  *
  **/
 
@@ -33,9 +28,9 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   const htmlApp = document.querySelector(".App");
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
+  // array-of-arrays of true/false values
   function createBoard() {
     let initialBoard = [];
-    // TODO: create array-of-arrays of true/false values
     for (let i = 0; i < nrows; i++) {
       initialBoard.push([]);
       for (let j = 0; j < ncols; j++) {
@@ -44,14 +39,14 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         } else {
           initialBoard[i].push(false);
         }
-        //CHECK IF LIT # IN ROWS AND COLUMNS ARE EVEN
       }
     }
     return initialBoard;
   }
 
+  // check the board in state to determine whether the player has won.
+  // if the game is won, show a winning msg & render nothing else
   function hasWon() {
-    // TODO: check the board in state to determine whether the player has won.
     let won = true;
     for (const row of board) {
       for (const cell of row) {
@@ -63,7 +58,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
     if (won) {
       htmlBoard.remove();
-      htmlApp.append("You Won!");
+      htmlApp.append("Congratulations, You Won!");
     }
   }
 
@@ -76,10 +71,10 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
       const flipCell = (y, x, boardCopy) => {
         // if this coord is actually on board, flip it
-
         if (x >= 0 && x < nrows && y >= 0 && y < ncols) {
           // flip clicked cell
           boardCopy[y][x] = !boardCopy[y][x];
+
           // flip cell above, if any
           if (y - 1 >= 0) {
             boardCopy[y - 1][x] = !boardCopy[y - 1][x];
@@ -99,19 +94,18 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         }
       };
 
-      // TODO: Make a (deep) copy of the oldBoard
+      // make a deep copy of the oldBoard
       let newBoard = JSON.parse(JSON.stringify(oldBoard));
 
-      // TODO: in the copy, flip this cell and the cells around it
+      // flip this cell and the cells around it in the deep copy
       flipCell(y, x, newBoard);
 
-      // TODO: return the copy
+      // return the copy
       return newBoard;
     });
   }
 
-  // if the game is won, just show a winning msg & render nothing else
-
+  // create html board
   function createHtmlBoardRows(board) {
     return board.map((row, rowIdx) => {
       return (
@@ -139,10 +133,3 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 }
 
 export default Board;
-
-// App
-//     As often, this is a very simple component. It just renders the Board component.
-// Board
-//     The most sophisticated component. It will hold the state that represents the in-memory grid of true/false for lights-on/off. Since the state for the board lives here, this is also were the setState() calls will need to go — and therefore, the functions that call setState().
-// Cell
-//     A simpler component. This will simply render a <div>, where the CSS classes will indicate whether this cell is lit or unlit. This is what the user clicks on — but it will need to call a function it receives from the Board, since that will need to update the state.

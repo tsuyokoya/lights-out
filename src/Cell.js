@@ -3,6 +3,10 @@ import "./Cell.css";
 
 /** A single cell on the board.
  *
+ * Cell:
+ * - Renders a <td>, where the CSS classes will indicate whether this cell is lit or unlit.
+ * - This is what the user clicks on — calls a function it receives from the Board, since that will need to update the state.
+ *
  * This has no state --- just two props:
  *
  * - flipCellsAroundMe: a function rec'd from the board which flips this

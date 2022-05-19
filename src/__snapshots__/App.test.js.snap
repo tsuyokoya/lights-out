@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <h1>
+      Lights Out
+    </h1>
+    <table
+      class="Board"
+    >
+      <tbody>
+        <tr>
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell "
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell "
+          />
+        </tr>
+        <tr>
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell "
+          />
+          <td
+            class="Cell "
+          />
+          <td
+            class="Cell "
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+        </tr>
+        <tr>
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell "
+          />
+          <td
+            class="Cell "
+          />
+        </tr>
+        <tr>
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+        </tr>
+        <tr>
+          <td
+            class="Cell "
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+          <td
+            class="Cell "
+          />
+          <td
+            class="Cell Cell-lit"
+          />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

@@ -9,9 +9,9 @@ import "./Board.css";
  *
  * Properties:
  *
- * - nrows: number of rows of board
- * - ncols: number of cols of board
- * - chanceLightStartsOn: float, chance any cell is lit at start of game
+ * - rows: number of rows of board
+ * - cols: number of cols of board
+ * - cellLitProbability: float, chance any cell is lit at start of game
  *
  * State:
  *
@@ -22,19 +22,17 @@ import "./Board.css";
  *
  **/
 
-function Board({ nrows, ncols, chanceLightStartsOn }) {
+function Board({ rows, cols, cellLitProbability }) {
   const [board, setBoard] = useState(createBoard());
-  const htmlBoard = document.querySelector(".Board");
-  const htmlApp = document.querySelector(".App");
 
-  /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
+  /** create a board rows high/cols wide, each cell randomly lit or unlit */
   // array-of-arrays of true/false values
   function createBoard() {
     let initialBoard = [];
-    for (let i = 0; i < nrows; i++) {
+    for (let i = 0; i < rows; i++) {
       initialBoard.push([]);
-      for (let j = 0; j < ncols; j++) {
-        if (Math.random() <= chanceLightStartsOn) {
+      for (let j = 0; j < cols; j++) {
+        if (Math.random() <= cellLitProbability) {
           initialBoard[i].push(true);
         } else {
           initialBoard[i].push(false);
@@ -55,15 +53,13 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         }
       }
     }
-
-    if (won) {
-      htmlBoard.remove();
-      htmlApp.append("Congratulations, You Won!");
-    }
+    return won;
   }
 
   // check if game is won
-  hasWon();
+  if (hasWon()) {
+    return <div className="win-msg">"Congratulations, You Won!"</div>;
+  }
 
   function flipCellsAroundMe(coord) {
     setBoard((oldBoard) => {
@@ -71,7 +67,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
       const flipCell = (y, x, boardCopy) => {
         // if this coord is actually on board, flip it
-        if (x >= 0 && x < nrows && y >= 0 && y < ncols) {
+        if (x >= 0 && x < rows && y >= 0 && y < cols) {
           // flip clicked cell
           boardCopy[y][x] = !boardCopy[y][x];
 
@@ -80,7 +76,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
             boardCopy[y - 1][x] = !boardCopy[y - 1][x];
           }
           // flip cell below, if any
-          if (y + 1 < ncols) {
+          if (y + 1 < cols) {
             boardCopy[y + 1][x] = !boardCopy[y + 1][x];
           }
           // flip cell to the left, if any
@@ -88,7 +84,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
             boardCopy[y][x - 1] = !boardCopy[y][x - 1];
           }
           // flip cell to the right, if any
-          if (x + 1 < nrows) {
+          if (x + 1 < rows) {
             boardCopy[y][x + 1] = !boardCopy[y][x + 1];
           }
         }

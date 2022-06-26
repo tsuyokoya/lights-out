@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>Lights Out</h1>
-      <Board nrows={5} ncols={5} chanceLightStartsOn={0.5} />
+      <Board rows={5} cols={5} cellLitProbability={0.5} />
     </div>
   );
 }

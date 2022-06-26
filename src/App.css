@@ -17,9 +17,14 @@ h1 {
   margin: 0.25em 0;
   text-decoration: underline;
   color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #f09,
-    0 0 82px #f09, 0 0 92px #f09;
   animation: flicker 1.5s infinite alternate;
+  animation-iteration-count: 5;
+}
+
+.win-msg {
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-size: 8em;
+  color: #fff;
 }
 
 @keyframes flicker {

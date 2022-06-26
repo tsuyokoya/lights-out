@@ -17,5 +17,5 @@ Lights Out is a logic/puzzle game that is played on a grid of individual lights,
 - Board
   - Holds the state that represents the in-memory grid of true/false for lights-on/off.
 - Cell
-  - Renders a <td>, where the CSS classes will indicate whether this cell is lit or unlit.
-  - This is what the user clicks on — calls the function "flipCellsAroundMe" that is received from the Board, to update the state in the Board component.
+  - Renders a table data element, where the CSS classes will indicate whether this cell is lit or unlit.
+  - This is what the user clicks on — calls the function "flipCellsAroundMe" that is received from the Board to update the state in the Board component.
